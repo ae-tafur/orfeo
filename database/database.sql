@@ -7,8 +7,8 @@ USE orfeo_db;
 CREATE TABLE user (
 
     id int(15) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(100) NOT NULL,
-    password VARCHAR(100) NOT NULL,
+    username VARCHAR(16) NOT NULL,
+    password VARCHAR(50) NOT NULL,
     fullname VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL,
     dependence VARCHAR(100) NOT NULL,
@@ -16,3 +16,4 @@ CREATE TABLE user (
     estate INT(1) NOT NULL,
     
 );
+

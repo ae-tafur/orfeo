@@ -24,10 +24,11 @@ app.set('view engine', '.hbs');
 /* Middlewares */
 
 app.set(morgan('dev'));
+app.use(express.json());
 
 /* Global variables */
 
-app.use((reg, res, next) => {
+app.use((req, res, next) => {
 
 
     next();
@@ -36,12 +37,14 @@ app.use((reg, res, next) => {
 /* Routes */
 
 app.use(require('./routes'));
+app.use(require('./routes/authentication'));
+/* app.use('/links', require('./routes/links')); */
 
 /* Public */
 
 app.use(express.static(path.join(__dirname, 'public')));
 
 /* Starting the server */
-app.listen(app.get('port'), () =>{
+app.listen(app.get('port'), () => {
     console.log('Server on port', app.get('port'));
 } );
