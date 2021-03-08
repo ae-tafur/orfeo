@@ -18,9 +18,9 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ae-tafur/orfeo/issues"
+    "url": "https://github.com/ae-tafur/SGD/issues"
   },
-  "homepage": "https://github.com/ae-tafur/orfeo#readme",
+  "homepage": "https://github.com/ae-tafur/SGD#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "connect-flash": "^0.1.1",
