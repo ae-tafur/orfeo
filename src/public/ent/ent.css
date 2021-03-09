@@ -80,14 +80,14 @@ body{
 	display: block;
 	font-size: 16px;
 	color: #0085ff;
-  }
+}
   
-  .login-box input {
+.login-box input {
 	width: 100%;
 	margin-bottom: 20px;
-  }
+}
   
-  .login-box input[type="text"], .login-box input[type="password"] {
+.login-box input[type="text"], .login-box input[type="password"] {
 	border: none;
 	border-bottom: 1px solid #fff;
 	background: transparent;
@@ -95,9 +95,9 @@ body{
 	height: 40px;
 	color: #cccccc;
 	font-size: 16px;
-  }
+}
   
-  .login-box input[type="submit"] {
+.login-box input[type="submit"] {
 	border: none;
 	outline: none;
 	height: 40px;
@@ -108,10 +108,14 @@ body{
 	transition: all 0.3s;
 	cursor: pointer;
 	margin: 5px;
-  }
+}
   
-  .login-box input[type="submit"]:hover {
+.login-box input[type="submit"]:hover {
 	background-color: #0085ff;
 	color: #ffffff;
 	
-  }
+}
+
+.navbar{
+    background-color: #23374d !important;
+}
