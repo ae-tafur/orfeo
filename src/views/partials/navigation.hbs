@@ -1,8 +1,8 @@
 <!-- Image and text -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg">
   <a class="navbar-brand" href="#">
     <img src="/img/sgd.svg" width="30"></img>
-    SGD-Orfeo
+    SGD - Inarwa  
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -10,27 +10,44 @@
   <div class="collapse navbar-collapse" id = "navbarRight">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <a class="nav-link" href="#"> 
+        <a id="bar-item" class="nav-link" href="#"> 
           <i class="bi bi-bar-chart-line"></i>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#"> 
+        <a id="bar-item" class="nav-link" href="#"> 
           <i class="bi bi-question-circle"></i>
         </a>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a id="bar-item" class="nav-link dropdown-toggle" href="#" id="menuUser" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="bi bi-person"></i> Usuario
         </a>
-        <div class="dropdown-menu" aria-labelledby = "navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#"> Action </a>
-          <a class="dropdown-item" href="#"> Another action </a>
-          <a class="dropdown-item" href="#"> Something else here </a>
-        </div>
+        <ul class="dropdown-menu" aria-labelledby = "menuUser">
+          <a class="dropdown-item" href="#">
+            <i class="bi bi-building"></i> Dependecia 
+          </a>
+          <a class="dropdown-item" href="#"> 
+            <i class="bi bi-key"></i> Contraseña 
+          </a>
+          <div class="dropdown-divider"></div>
+          <li id="submenu" class="dropdown-item dropleft">
+            <a id="bar-subitem" class="nav-link dropdown-toggle" href= "#subitem" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+              <i class="bi bi-gear"></i> Administración 
+            </a>
+            <ul class="dropdown-menu" id="subitem">
+              <li><a class="dropdown-item" href="users"> Usuario </a></li>
+              <li><a class="dropdown-item" href="roles"> Permisos </a></li>
+              <li><a class="dropdown-item" href="dependencies"> Dependecia </a></li>
+              <li><a class="dropdown-item" href="files"> Documentos </a></li>
+              <li><a class="dropdown-item" href="contacts"> Contactos </a></li>
+              <li><a class="dropdown-item" href="buildings"> Edificios </a></li>
+            </ul>
+          </li>
+        </ul>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#"> 
+        <a id="bar-item" class="nav-link" href="#"> 
           <i class="bi bi-box-arrow-right"></i> Salir 
         </a>
       </li>

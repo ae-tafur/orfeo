@@ -3,6 +3,6 @@ module.exports = {
         host: 'localhost',
         user: 'ae_tafur',
         password: '$123',
-        database: 'orfeo_db' 
+        database: 'inarwa_db' 
     }
 };

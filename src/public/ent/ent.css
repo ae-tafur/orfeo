@@ -1,13 +1,4 @@
 /* Login Box Style */
-
-body{
-	margin: 0;
-	padding: 0;
-	height: 100vh;
-	background-color: #eeeeee!important;
-	min-height: 100vh; 
-}
-
 #top{
 	float: left;
 	width: 30%;
@@ -117,5 +108,9 @@ body{
 }
 
 .navbar{
+    background-color: #23374d !important;
+}
+
+#sidebar{
     background-color: #23374d !important;
 }
