@@ -1,0 +1,89 @@
+<h1> Radicar Ingreso Fisico </h1>
+<hr>
+<form>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <label for="inputCode">Radicado </label>
+            <canvas id="barcode"></canvas>
+            <input type="text" class="form-control" id="inputCode">
+        </div>
+        <div class="form-group col-md-3">
+            <label for="inputDate">Fecha</label>
+            <input type="date" class="form-control" id="inputDate">
+        </div>
+    </div>
+    <hr>
+    <h4>Remitente</h4>
+    <hr>
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label for="inputContactName">Nombre</label>
+            <input type="text" class="form-control" id="inputNameContact">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="inputEmail">Correo Electronico</label>
+            <input type="email" class="form-control" id="inputEmail">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="inputAddress">Dirección</label>
+            <input type="text" class="form-control" id="inputAddress" placeholder="Cll 9 # 10-25">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label for="inputCountry">Pais</label>
+            <select id="inputCountry" class="form-control">
+                <option selected>Choose...</option>
+                <option>...</option>
+            </select>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="inputState">Departamento</label>
+            <select id="inputState" class="form-control">
+                <option selected>Choose...</option>
+                <option>...</option>
+            </select>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="inputCity">Ciudad</label>
+            <select id="inputCity" class="form-control">
+                <option selected>Choose...</option>
+                <option>...</option>
+            </select>
+        </div>
+    </div>
+    <hr>
+    <h4>Documento</h4>
+    <hr>
+    <div class="form-row">
+        <div class="form-group col-md-5">
+            <label for="inputDocType">Tipo de Documento</label>
+            <select id="inputDocType" class="form-control">
+                <option selected>Choose...</option>
+                <option>...</option>
+            </select>
+        </div>
+        <div class="form-group col-md-7">
+            <label for="inputForDependence">Dependencia Destino</label>
+            <input type="text" class="form-control" id="inputForDependence">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputSubject">Asunto</label>
+        <input type="text" class="form-control" id="inputSubject">
+    </div>
+    <div class="custom-file mb-3">
+        <input type="file" class="custom-file-input" id="validatedCustomFile" required>
+        <label class="custom-file-label" for="validatedCustomFile">Seleccionar archivo...</label>
+        <div class="invalid-feedback">Example invalid custom file feedback</div>
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary">Radicar</button>
+    </div>
+</form>
+
+<!-- Barcode -->
+<script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
+<script>
+    
+</script>

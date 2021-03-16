@@ -66,6 +66,7 @@ body{
 #content {
     padding-left: 20%;
     padding-right: 2%;
+    padding-bottom: 2%;
     max-height: 85vh;
     transition: all 0.3s;
     overflow: auto;
@@ -73,10 +74,4 @@ body{
 
 #edit{
     color: #0077bf;
-}
-
-#navbar-example3{
-    width: 220px;
-    
-    overflow-y: scroll;
 }

@@ -43,7 +43,7 @@ router.post('/users', async (req, res) => {
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
     await pool.query(sql, [id, username, '123', 
                             fullname, email, profile, 
-                            dependence, address, rol, ext, '1']);
+                            dependence, address, rol, ext, 'Activo']);
     res.redirect('users');  
 });
 
@@ -63,8 +63,8 @@ router.get('/roles', (req, res) => {
     res.render('admin/role/roles');
 });
 
-router.get('/files', (req, res) => {
-    res.render('admin/file/files');
+router.get('/doctypes', (req, res) => {
+    res.render('admin/doctype/doctype');
 });
 
 router.get('/dependencies', (req, res) => {
@@ -77,6 +77,10 @@ router.get('/contacts', (req, res) => {
 
 router.get('/buildings', (req, res) => {
     res.render('admin/building/buildings');
+});
+
+router.get('/income_paper', (req, res) => {
+    res.render('files/income_paper');
 });
 
 module.exports = router;
