@@ -4,6 +4,7 @@ body{
 	height: 100vh;
 	background-color: #eeeeee!important;
 	max-height: 100vh; 
+    position: relative;
 }
 
 /*  Change the color of the navbar-brand*/
@@ -70,10 +71,12 @@ body{
     overflow: auto;
   }
 
-#editUser{
-    float:right;
+#edit{
+    color: #0077bf;
 }
 
-.modal-dialog{
-    vertical-align: middle;
+#navbar-example3{
+    width: 220px;
+    
+    overflow-y: scroll;
 }

@@ -1,0 +1,64 @@
+<h1>Estadisticas</h1>
+<hr>
+<canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+
+<!-- Graphs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+    <script>
+      var ctx = document.getElementById("myChart");
+      var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          datasets: [{
+            data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
+            lineTension: 0,
+            backgroundColor: 'transparent',
+            borderColor: '#007bff',
+            borderWidth: 4,
+            pointBackgroundColor: '#007bff'
+          }]
+        },
+        options: {
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: false
+              }
+            }]
+          },
+          legend: {
+            display: false,
+          }
+        }
+      });
+    </script>
+
+    <script src="https://cdn.anychart.com/releases/8.9.0/js/anychart-core.min.js"></script>
+<script src="https://cdn.anychart.com/releases/8.9.0/js/anychart-cartesian.min.js"></script>
+<script>
+  // create the first series
+var series1 = chart.bar(seriesData_1);
+
+// configure the visual settings of the first series
+series1.normal().fill("#00cc99", 0.3);
+series1.hovered().fill("#00cc99", 0.1);
+series1.selected().fill("#00cc99", 0.5);
+series1.normal().stroke("#00cc99", 1, "10 5", "round");
+series1.hovered().stroke("#00cc99", 2, "10 5", "round");
+series1.selected().stroke("#00cc99", 4, "10 5", "round");
+
+// create the second series
+var series2 = chart.bar(seriesData_2);
+
+// configure the visual settings of the second series
+series2.normal().fill("#0066cc", 0.3);
+series2.hovered().fill("#0066cc", 0.1);
+series2.selected().fill("#0066cc", 0.5);
+series2.normal().hatchFill("forward-diagonal", "#0066cc", 1, 15);
+series2.hovered().hatchFill("forward-diagonal", "#0066cc", 1, 15);
+series2.selected().hatchFill("forward-diagonal", "#0066cc", 1, 15);
+series2.normal().stroke("#0066cc");
+series2.hovered().stroke("#0066cc", 2);
+series2.selected().stroke("#0066cc", 4);
+</script>

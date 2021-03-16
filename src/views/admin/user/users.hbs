@@ -1,10 +1,12 @@
-
 <h1> Usuarios </h1>
 <hr>
 <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
     <div class="btn-group" role="group" aria-label="First group">
         <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#addUserModal"> 
             <i class="bi bi-person-plus"></i>
+        </button>
+        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#addUserFileModal"> 
+            <i class="bi bi-people"></i>
         </button>
     </div>
     <div class="input-group">
@@ -20,29 +22,34 @@
 <table class="table table-hover">
     <thead class="bg-secondary text-light">
         <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Nombre</th>
-        <th scope="col">Dependecia</th>
-        <th scope="col">Estado</th>
-        <th scope="col">Acción</th>
+            <th style="width: 20%" scope="col">ID</th>
+            <th style="width: 50%" scope="col">Nombre</th>
+            <th style="width: 10%" scope="col">Usuario</th>
+            <th style="width: 10%" scope="col">Estado</th>
+            <th style="width: 10%" scope="col">Acción</th>
         </tr>
     </thead>
     <tbody>
+        {{#each users}}
         <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>
-                <button class="btn btn-primary" id="editUser" data-toggle="modal" data-target="#editUserModal"> Editar </button>
+            <td>{{id}}</td>
+            <td>{{fullname}}</td>
+            <td>{{username}}</td>
+            <td>{{active}}</td>
+            <td style="text-align:center">
+                <a class="edit" id="btnEditUser" title="Editar" data-toggle="modal" data-id="/{{id}}" data-target="#editUserModal"> 
+                    <i class="bi bi-pencil-fill"></i>
+                </a>
             </td>
         </tr>
+        {{/each}}
     </tbody>
 </table>
 
 <!-- Modal add User -->
 
 <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <form id="newUser" action="/sgd/users" method="POST">
+    <form id="addUserForm" action="/sgd/users" method="POST">
         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -118,10 +125,35 @@
     </form>
 </div>
 
+<!-- Modal add User by File -->
+
+<div class="modal fade" id="addUserFileModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <form id="addUserFileForm" action="/sgd/users" method="POST">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"> Creación Masiva de Usuarios </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">x</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="formControlFile"> Seleccionar archivo: </label>
+                        <input type="file" class="form-control-file" id="formControlFile">
+                    </div>
+                </div>
+                <hr>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" id="uploadFile"> Subir </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
 <!-- Modal edit User -->
 
 <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
-    <form id="editUser" action="/sgd/users" method="POST">
+    <form id="editUserForm" action="/{{id}}" method="POST">
         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -132,15 +164,15 @@
                     <div class="form-row">
                         <div class="form-group col-md-5">
                             <label for="inputFullname"> Nombre </label>
-                            <input type="text" class="form-control" id="inputFullname" name="fullname">
+                            <input type="text" value="{{fullname}}" class="form-control" id="inputFullname" name="fullname">
                         </div>
                         <div class="form-group col-md-2">
                             <label for="inputUser"> Usuario </label>
-                            <input type="text" class="form-control" id="inputUser" name="username">
+                            <input type="text" value="{{username}}" class="form-control" id="inputUser" name="username">
                         </div>
                         <div class="form-group col-md-5">
                             <label for="inputEmail"> Correo Electronico </label>
-                            <input type="email" class="form-control" id="inputEmail" name="email">
+                            <input type="email" value="{{email}}" class="form-control" id="inputEmail" name="email">
                         </div>
                     </div>
                     <div class="form-row">
@@ -156,7 +188,7 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label for="inputId"> ID </label>
-                            <input type="number" class="form-control" id="inputId" name="id" placeholder="Cod Dep + ID" >
+                            <input type="number" value="{{id}}" class="form-control" id="inputId" name="id" placeholder="Cod Dep + ID" >
                         </div>
                     </div>
                     <div class="form-row">
@@ -179,13 +211,13 @@
                         </div>
                         <div class="form-group col-md-3">
                             <label for="inputExt"> Extensión </label>
-                            <input type="text" class="form-control" id="inputExt" name="ext">
+                            <input type="text" value="{{ext}}" class="form-control" id="inputExt" name="ext">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-9">
                             <label for="inputAddress"> Ubicación </label>
-                            <input type="text" class="form-control" id="inputAddress" name="address" placeholder="Dirección + Edificio">
+                            <input type="text" value="{{address}}" class="form-control" id="inputAddress" name="address" placeholder="Dirección + Edificio">
                         </div>
                         <div class="form-group col-md-3">
                             <label for="inputState"> Estado </label>
