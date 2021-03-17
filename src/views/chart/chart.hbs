@@ -1,6 +1,9 @@
 <h1>Estadisticas</h1>
 <hr>
+<h4>Documentos recibidos</h4>
 <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+<h4>Oportunidad de respuesta</h4>
+<canvas class="my-4 w-100" id="myChart2" width="900" height="380"></canvas>
 
 <!-- Graphs -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
@@ -42,6 +45,24 @@
           }
       }
   });
+  var ctx2 = document.getElementById("myChart2");
+  var myChart2 = new Chart(ctx2, {
+    type: 'line',
+
+    // The data for our dataset
+    data: {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        datasets: [{
+            label: 'My First dataset',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [0, 10, 5, 2, 20, 30, 45]
+        }]
+    },
+
+    // Configuration options go here
+    options: {}
+});
 </script>
 
    

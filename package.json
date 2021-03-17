@@ -25,6 +25,7 @@
     "bcryptjs": "^2.4.3",
     "canvas": "^2.7.0",
     "connect-flash": "^0.1.1",
+    "exceljs": "^4.2.1",
     "express": "^4.17.1",
     "express-handlebars": "^5.2.1",
     "express-session": "^1.17.1",
