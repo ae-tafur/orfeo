@@ -1,5 +1,5 @@
 {
-  "name": "SGD",
+  "name": "sgd",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -24,6 +24,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "canvas": "^2.7.0",
+    "chart.js": "^2.9.4",
     "connect-flash": "^0.1.1",
     "exceljs": "^4.2.1",
     "express": "^4.17.1",
