@@ -31,7 +31,7 @@
     <div class="form-row">
         <div class="form-group col-md-2">
             <label for="inputTel">Telefono</label>
-            <input type="text" class="form-control" id="inputTel">
+            <input type="text" class="form-control" id="inputTel" value="12345">
         </div>
         <div class="form-group col-md-3">
             <label for="inputAddress">Dirección</label>
@@ -40,22 +40,28 @@
         <div class="form-group col-md-2">
             <label for="inputCountry">Pais</label>
             <select id="inputCountry" class="form-control">
-                <option selected>Choose...</option>
-                <option>...</option>
+                <option selected> Choose...</option>
+                {{#each country}}
+                    <option>{{country_name}}</option>
+                {{/each}}
             </select>
         </div>
         <div class="form-group col-md-2">
             <label for="inputState">Departamento</label>
             <select id="inputState" class="form-control">
-                <option selected>Choose...</option>
-                <option>...</option>
+                <option selected> Choose...</option>
+                {{#each dpto}}
+                    <option>{{dpto_name}}</option>
+                {{/each}}
             </select>
         </div>
         <div class="form-group col-md-3">
             <label for="inputCity">Ciudad</label>
             <select id="inputCity" class="form-control">
                 <option selected>Choose...</option>
-                <option>...</option>
+                {{#each city}}
+                    <option>{{city_name}}</option>
+                {{/each}}
             </select>
         </div>
     </div>
@@ -67,12 +73,19 @@
             <label for="inputDocType">Tipo de Documento</label>
             <select id="inputDocType" class="form-control">
                 <option selected>Choose...</option>
-                <option>...</option>
+                {{#each doctypes}}
+                    <option>{{doc_id}} - {{doc_name}}</option>
+                {{/each}}
             </select>
         </div>
         <div class="form-group col-md-7">
             <label for="inputForDependence">Dependencia Destino</label>
-            <input type="text" class="form-control" id="inputForDependence">
+            <select id="inputForDependence" class="form-control">
+                <option selected>Choose...</option>
+                {{#each deps}}
+                    <option>{{dep_id}} - {{dep_name}}</option>
+                {{/each}}
+            </select>
         </div>
     </div>
     <div class="form-group">
@@ -90,7 +103,6 @@
 </form>
 
 <!-- Barcode -->
-<script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
 <script>
     JsBarcode(".barcode").init();
 </script>

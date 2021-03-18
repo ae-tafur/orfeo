@@ -1,6 +1,6 @@
 const mariadb = require('mariadb');
 
-const { database } = require('./keys');
+const { database } = require('./config');
 
 const pool = mariadb.createPool( database );
 

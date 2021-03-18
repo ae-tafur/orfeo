@@ -1,0 +1,142 @@
+<h1> Dependencias </h1>
+<hr>
+<div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
+    <div class="btn-group" role="group" aria-label="First group">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addDepModal"> 
+            <i class="bi bi-plus"></i>
+        </button>
+        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#addDepFileModal"> 
+            <i class="bi bi-file-plus"></i>
+        </button>
+    </div>
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <div class="input-group-text" id="btnSearch"> 
+                <i class="bi bi-search"></i>
+            </div>
+        </div>
+        <input type="text" class="form-control" aria-label="Input group example" aria-describedby="btnSearch">
+    </div>
+</div>
+<hr>
+<table class="table table-hover">
+    <thead class="bg-secondary text-light">
+        <tr>
+            <th style="width: 20%" scope="col">ID</th>
+            <th style="width: 50%" scope="col">Nombre</th>
+            <th style="width: 20%" scope="col">Edificio</th>
+            <th style="width: 10%" scope="col">Acción</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each deps}}
+        <tr>
+            <td>{{dep_id}}</td>
+            <td>{{dep_name}}</td>
+            <td>{{dep_building}}</td>
+            <td style="text-align:center">
+                <a class="edit" id="btnEditDep" title="Editar" data-toggle="modal" data-id="/{{dep_id}}" data-target="#editDepModal"> 
+                    <i class="bi bi-pencil-fill"></i>
+                </a>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<!-- Modal add Dependence -->
+
+<div class="modal fade" id="addDepModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <form id="addDepForm" action="/sgd/dependencies" method="POST">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"> Crear Dependencia </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">x</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="inputId"> Codigo </label>
+                            <input type="number" class="form-control" id="inputId" name="id" placeholder="Cod Dep + ID" required>
+                        </div>
+                        <div class="form-group col-md-8">
+                            <label for="inputName"> Nombre </label>
+                            <input type="text" class="form-control" id="inputName" name="name" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="inputAddress"> Ubicación </label>
+                            <input type="text" class="form-control" id="inputAddress" name="address" placeholder="Dirección + Edificio" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" id="submitForm"> Guardar </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Modal add Dependence by File -->
+
+<div class="modal fade" id="addDepFileModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <form id="addDepFileForm" action="/sgd/users" method="POST">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"> Creación Masiva de Dependencias </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">x</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="formControlFile"> Seleccionar archivo: </label>
+                        <input type="file" class="form-control-file" id="formControlFile">
+                    </div>
+                </div>
+                <hr>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" id="uploadFile"> Subir </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Modal edit Dependence -->
+
+<div class="modal fade" id="editDepModal" tabindex="-1" aria-labelledby="editDepModalLabel" aria-hidden="true">
+    <form id="editDepForm" action="/{{id}}" method="POST">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editDepModalLabel"> Editar Dependecia </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">x</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="inputId"> Codigo </label>
+                            <input type="number" class="form-control" id="inputId" name="id" placeholder="Cod Dep + ID" required>
+                        </div>
+                        <div class="form-group col-md-8">
+                            <label for="inputName"> Nombre </label>
+                            <input type="text" class="form-control" id="inputName" name="name" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="inputAddress"> Ubicación </label>
+                            <input type="text" class="form-control" id="inputAddress" name="address" placeholder="Dirección + Edificio" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" id="submitForm"> Guardar </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

@@ -32,10 +32,10 @@
     <tbody>
         {{#each users}}
         <tr>
-            <td>{{id}}</td>
-            <td>{{fullname}}</td>
-            <td>{{username}}</td>
-            <td>{{active}}</td>
+            <td>{{usr_id}}</td>
+            <td>{{usr_fullname}}</td>
+            <td>{{usr_username}}</td>
+            <td>{{usr_state}}</td>
             <td style="text-align:center">
                 <a class="edit" id="btnEditUser" title="Editar" data-toggle="modal" data-id="/{{id}}" data-target="#editUserModal"> 
                     <i class="bi bi-pencil-fill"></i>
@@ -75,11 +75,9 @@
                         <div class="form-group col-md-8">
                             <label for="inputDependence"> Dependecia </label>
                             <select class="form-control" id="inputDependence" name="dependence">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                                {{#each deps}}
+                                    <option>{{dep_id}} - {{dep_name}}</option>
+                                {{/each}}
                             </select>
                         </div>
                         <div class="form-group col-md-4">
