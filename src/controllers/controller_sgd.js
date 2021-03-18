@@ -96,10 +96,11 @@ sgdCtrl.renderChart = (req, res) => {
 sgdCtrl.renderIncomePaper = async (req, res) => {
     const doctypes = await pool.query('SELECT * FROM doctype');
     const deps = await pool.query('SELECT * FROM dependence');
+    const users = await pool.query('SELECT * FROM user');
     const country = await pool.query('SELECT * FROM country');
     const dpto = await pool.query('SELECT * FROM dpto');
     const city = await pool.query('SELECT * FROM city');
-    res.render('files/income_paper',{ doctypes, deps, country, dpto, city});
+    res.render('files/income_paper',{ doctypes, deps, users, country, dpto, city});
 };
 
 module.exports = sgdCtrl;

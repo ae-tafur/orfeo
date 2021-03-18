@@ -1,43 +1,28 @@
 <h1> Radicar Ingreso Fisico </h1>
 <hr>
 <form>
+    <h4>Remitente</h4>
+    <hr>
     <div class="form-row">
-        <div class="form-group col-md-3">
-            <canvas class="barcode" jsbarcode-format="UPC" jsbarcode-value="123456789012" jsbarcode-height="45"></canvas>
-            <div class="input-group mb-3">
-                <input type="date" class="form-control" placeholder="Fecha de Radicación" aria-describedby="inputDate">
-                <div class="input-group-append">
-                    <span class="input-group-text" id="inputDate">
-                        <i class="bi bi-calendar3"></i>
-                    </span>
-                </div>
-            </div>
+        <div class="form-group col-md-6">
+            <label for="inputContactName">Nombre</label>
+            <input type="text" class="form-control" id="inputNameContact">
         </div>
-        <div class="col-md-9" >
-            <h4>Remitente</h4>
-            <hr>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="inputContactName">Nombre</label>
-                    <input type="text" class="form-control" id="inputNameContact">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="inputEmail">Correo Electronico</label>
-                    <input type="email" class="form-control" id="inputEmail">
-                </div>
-            </div>
+        <div class="form-group col-md-4">
+            <label for="inputEmail">Correo Electronico</label>
+            <input type="email" class="form-control" id="inputEmail">
+        </div>
+        <div class="form-group col-md-2">
+            <label for="inputTel">Telefono</label>
+            <input type="text" class="form-control" id="inputTel">
         </div>
     </div>
     <div class="form-row">
-        <div class="form-group col-md-2">
-            <label for="inputTel">Telefono</label>
-            <input type="text" class="form-control" id="inputTel" value="12345">
-        </div>
         <div class="form-group col-md-3">
             <label for="inputAddress">Dirección</label>
             <input type="text" class="form-control" id="inputAddress" placeholder="Cll 9 # 10-25">
         </div>
-        <div class="form-group col-md-2">
+        <div class="form-group col-md-3">
             <label for="inputCountry">Pais</label>
             <select id="inputCountry" class="form-control">
                 <option selected> Choose...</option>
@@ -46,7 +31,7 @@
                 {{/each}}
             </select>
         </div>
-        <div class="form-group col-md-2">
+        <div class="form-group col-md-3">
             <label for="inputState">Departamento</label>
             <select id="inputState" class="form-control">
                 <option selected> Choose...</option>
@@ -69,41 +54,98 @@
     <h4>Documento</h4>
     <hr>
     <div class="form-row">
-        <div class="form-group col-md-5">
+        <div class="form-group col-md-3">
+            <label for="inputDocType">Fecha de Radicado</label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputDate2">
+                        <i class="bi bi-calendar3"></i>
+                    </span>
+                </div>
+                <input id="inputDate" type="text" class="tail-datetime-field" aria-describedby="inputDate">
+            </div>
+        </div>
+        <div class="form-group col-md-9">
             <label for="inputDocType">Tipo de Documento</label>
             <select id="inputDocType" class="form-control">
-                <option selected>Choose...</option>
                 {{#each doctypes}}
-                    <option>{{doc_id}} - {{doc_name}}</option>
+                    <option id={{doc_id}}>{{doc_id}} - {{doc_name}}</option>
                 {{/each}}
             </select>
         </div>
-        <div class="form-group col-md-7">
-            <label for="inputForDependence">Dependencia Destino</label>
-            <select id="inputForDependence" class="form-control">
-                <option selected>Choose...</option>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputDependence">Dependencia Destino</label>
+            <select id="inputDependence" class="form-control">
                 {{#each deps}}
-                    <option>{{dep_id}} - {{dep_name}}</option>
+                    <option id={{dep_id}}>{{dep_id}} - {{dep_name}}</option>
+                {{/each}}
+            </select>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputDependence">Usuario Asignado</label>
+            <select id="inputDependence" class="form-control">
+                {{#each users}}
+                    <option id={{usr_id}}>{{usr_id}} - {{usr_fullname}}</option>
                 {{/each}}
             </select>
         </div>
     </div>
-    <div class="form-group">
-        <label for="inputSubject">Asunto</label>
-        <input type="text" class="form-control" id="inputSubject">
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="inputSubject">Asunto</label>
+            <input type="text" class="form-control" id="inputSubject">
+        </div>
     </div>
-    <div class="custom-file mb-3">
-        <input type="file" class="custom-file-input" id="validatedCustomFile" required>
-        <label class="custom-file-label" for="validatedCustomFile">Seleccionar archivo...</label>
-        <div class="invalid-feedback">Example invalid custom file feedback</div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <div class="form-row">
+                <button id="genBarcode" type="button" class="btn btn-secondary btn-block" onclick="funGenBarcode()">Generar codigo</button>
+            </div>
+            <div class="form-row">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="validatedCustomFile">
+                    <label class="custom-file-label" for="validatedCustomFile">Seleccionar archivo...</label>
+                    <div class="invalid-feedback">Example invalid custom file feedback</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <svg id="barcode" height="40"></svg>
+        </div>
     </div>
-    <div>
-        <button type="submit" class="btn btn-primary">Radicar</button>
-    </div>
+    <button type="submit" class="btn btn-primary btn-block">Radicar documento</button>
 </form>
 
-{{!-- Generate barcode --}}
+{{!-- Generate barcode and datepicker --}}
+
 <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
-<script> 
-    JsBarcode(".barcode").init(); 
+<script src="https://cdn.jsdelivr.net/npm/tail.datetime@0.4.13/js/tail.datetime-full.min.js"></script>
+<script src="https://cdn.jsdelivr.net/combine/npm/tail.datetime@0.4.13,npm/tail.datetime@0.4.13/langs/tail.datetime-es.min.js"></script>
+<script type="text/javascript"> 
+    
+    document.addEventListener("DOMContentLoaded", function(){
+                tail.DateTime(".tail-datetime-field", { position: "right", dateFormat: "YYYY-mm-dd", 
+                locale: "es", timeStepMinutes: 1, time12h: false});
+            });
+
+    function funGenBarcode() {
+        var doc = document.getElementById("inputDocType");
+        var codDoctype = doc.options[doc.selectedIndex].id;
+
+        var dep = document.getElementById("inputDependence");
+        var codDep = dep.options[dep.selectedIndex].id;
+
+        var dateRad = document.getElementById("inputDate").value;
+        var dateText = dateRad.replace(/-/g,"");
+        var dateText = dateText.replace(/:/g,"");
+        var dateText = dateText.replace(/ /g,"");
+        var dateText = dateText.slice(0, -2);
+
+        var barCodeT = "1".concat(codDoctype).concat(codDep).concat(dateText);
+
+        JsBarcode("#barcode", barCodeT, { height:40, lastChar: "1"});
+        };
+
 </script>
