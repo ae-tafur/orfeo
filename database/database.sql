@@ -63,15 +63,15 @@ CREATE TABLE contact (
 );
 
 CREATE TABLE country (
-  country_id DECIMAL(4,0) DEFAULT NULL,
+  country_id DECIMAL(4,0) DEFAULT '170' NULL PRIMARY KEY,
   country_name VARCHAR(30) NOT NULL
 );
 
 INSERT INTO country VALUES (170,'Colombia');
 
 CREATE TABLE dpto (
-  country_id DECIMAL(4,0) DEFAULT '170',
-  dpto_id DECIMAL(3,0) NOT NULL,
+  country_id DECIMAL(4,0),
+  dpto_id DECIMAL(3,0) DEFAULT '20' NOT NULL PRIMARY KEY,
   dpto_name VARCHAR(70) NOT NULL
   
 );
@@ -88,9 +88,9 @@ INSERT INTO dpto VALUES (170,1,'Todos'),(170,05,'Antioquía'),(170,08,'Atlántic
 
 
 CREATE TABLE city (
-  country_id DECIMAL(4,0) DEFAULT '170',
-  dpto_id DECIMAL(3,0) NOT NULL,
-  city_id DECIMAL(4,0) NOT NULL,
+  country_id DECIMAL(4,0),
+  dpto_id DECIMAL(3,0) DEFAULT '20' NOT NULL,
+  city_id DECIMAL(4,0) DEFAULT '570' NOT NULL,
   city_name VARCHAR(100) NOT NULL
 );
 

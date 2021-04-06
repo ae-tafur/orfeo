@@ -72,6 +72,10 @@ body{
     overflow: auto;
   }
 
-#edit{
-    color: #0077bf;
+.btn-primary{
+    background-color: #034488;
+}
+
+#btnAction{
+    float: right;
 }

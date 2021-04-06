@@ -29,10 +29,10 @@ app.set(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+
 /* Global variables */
 
 app.use((req, res, next) => {
-
 
     next();
 });

@@ -19,7 +19,7 @@
     </div>
 </div>
 <hr>
-<table class="table table-hover">
+<table id="users" class="table table-hover">
     <thead class="bg-secondary text-light">
         <tr>
             <th style="width: 20%" scope="col">ID</th>
@@ -37,7 +37,7 @@
             <td>{{usr_username}}</td>
             <td>{{usr_state}}</td>
             <td style="text-align:center">
-                <a class="edit" id="btnEditUser" title="Editar" data-toggle="modal" data-id="/{{id}}" data-target="#editUserModal"> 
+                <a class="btn" id="btnEdit" title="edit" href="users/edit/{{usr_id}}"> 
                     <i class="bi bi-pencil-fill"></i>
                 </a>
             </td>
@@ -49,9 +49,9 @@
 <!-- Modal add User -->
 
 <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <form id="addUserForm" action="/sgd/users" method="POST">
-        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
-            <div class="modal-content">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <form id="addUserForm" action="/sgd/users" method="POST">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel"> Crear Usuario </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">x</button>
@@ -76,7 +76,7 @@
                             <label for="inputDependence"> Dependecia </label>
                             <select class="form-control" id="inputDependence" name="dependence">
                                 {{#each deps}}
-                                    <option>{{dep_id}} - {{dep_name}}</option>
+                                    <option value="{{dep_id}}">{{dep_id}} - {{dep_name}}</option>
                                 {{/each}}
                             </select>
                         </div>
@@ -118,17 +118,17 @@
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary" id="submitForm"> Guardar </button>
                 </div>
-            </div>
+            </form>
         </div>
-    </form>
+    </div>
 </div>
 
 <!-- Modal add User by File -->
 
 <div class="modal fade" id="addUserFileModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <form id="addUserFileForm" action="/sgd/users" method="POST">
-        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
-            <div class="modal-content">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <form id="addUserFileForm" action="/sgd/users" method="POST">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel"> Creación Masiva de Usuarios </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">x</button>
@@ -143,97 +143,7 @@
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary" id="uploadFile"> Subir </button>
                 </div>
-            </div>
+            </form>
         </div>
-    </form>
-</div>
-
-<!-- Modal edit User -->
-
-<div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
-    <form id="editUserForm" action="/{{id}}" method="POST">
-        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editUserModalLabel"> Editar Usuario </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">x</button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-row">
-                        <div class="form-group col-md-5">
-                            <label for="inputFullname"> Nombre </label>
-                            <input type="text" value="{{fullname}}" class="form-control" id="inputFullname" name="fullname">
-                        </div>
-                        <div class="form-group col-md-2">
-                            <label for="inputUser"> Usuario </label>
-                            <input type="text" value="{{username}}" class="form-control" id="inputUser" name="username">
-                        </div>
-                        <div class="form-group col-md-5">
-                            <label for="inputEmail"> Correo Electronico </label>
-                            <input type="email" value="{{email}}" class="form-control" id="inputEmail" name="email">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-8">
-                            <label for="inputDependence"> Dependecia </label>
-                            <select class="form-control" id="inputDependence" name="dependence">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="inputId"> ID </label>
-                            <input type="number" value="{{id}}" class="form-control" id="inputId" name="id" placeholder="Cod Dep + ID" >
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-3">
-                            <label for="inputPerfil"> Perfil </label>
-                            <select class="form-control" id="inputPerfil" name="profile">
-                                <option>Jefe</option>
-                                <option>Normal</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="inputRol"> Rol </label>
-                            <select class="form-control" id="inputRol" name="rol">
-                                <option>Auxiliar Administrativo</option>
-                                <option>Profesional Universitario</option>
-                                <option>Profesional Especializado</option>
-                                <option>Asesor</option>
-                                <option>Directivo</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label for="inputExt"> Extensión </label>
-                            <input type="text" value="{{ext}}" class="form-control" id="inputExt" name="ext">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-9">
-                            <label for="inputAddress"> Ubicación </label>
-                            <input type="text" value="{{address}}" class="form-control" id="inputAddress" name="address" placeholder="Dirección + Edificio">
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label for="inputState"> Estado </label>
-                            <select class="form-control" id="inputState" name="state">
-                                <option> Activo </option>
-                                <option> Inactivo </option>
-                            </select>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="changePass">
-                            <label class="form-check-label" for="changePass"> Solicitar cambio de contraseña </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" id="submitForm"> Guardar </button>
-                </div>
-            </div>
-        </div>
-    </form>
+    </div>
 </div>

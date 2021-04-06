@@ -1,6 +1,6 @@
 <h1> Radicar Ingreso Fisico </h1>
 <hr>
-<form>
+<form method="post">
     <h4>Remitente</h4>
     <hr>
     <div class="form-row">
@@ -62,7 +62,7 @@
                         <i class="bi bi-calendar3"></i>
                     </span>
                 </div>
-                <input id="inputDate" type="text" class="tail-datetime-field" aria-describedby="inputDate">
+                <input id="inputDate" type="text" class="tail-datetime-field form-control" aria-describedby="inputDate">
             </div>
         </div>
         <div class="form-group col-md-9">
@@ -84,7 +84,7 @@
             </select>
         </div>
         <div class="form-group col-md-6">
-            <label for="inputDependence">Usuario Asignado</label>
+            <label for="inputDependence">Asignar a:</label>
             <select id="inputDependence" class="form-control">
                 {{#each users}}
                     <option id={{usr_id}}>{{usr_id}} - {{usr_fullname}}</option>
@@ -118,11 +118,7 @@
     <button type="submit" class="btn btn-primary btn-block">Radicar documento</button>
 </form>
 
-{{!-- Generate barcode and datepicker --}}
-
-<script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tail.datetime@0.4.13/js/tail.datetime-full.min.js"></script>
-<script src="https://cdn.jsdelivr.net/combine/npm/tail.datetime@0.4.13,npm/tail.datetime@0.4.13/langs/tail.datetime-es.min.js"></script>
+{{!-- Generate barcode and datePicker--}}
 <script type="text/javascript"> 
     
     document.addEventListener("DOMContentLoaded", function(){
@@ -146,6 +142,6 @@
         var barCodeT = "1".concat(codDoctype).concat(codDep).concat(dateText);
 
         JsBarcode("#barcode", barCodeT, { height:40, lastChar: "1"});
-        };
+    };
 
 </script>
