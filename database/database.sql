@@ -20,8 +20,9 @@ CREATE TABLE user (
     usr_created_at TIMESTAMP NOT NULL DEFAULT current_timestamp
 );
 
-INSERT INTO user (usr_id,usr_username,usr_password,usr_fullname,usr_email,usr_profile,dep_id,usr_oficce,ed_id,usr_rol,usr_ext,usr_state)
-  VALUES ('00010000000001', 'admin', '123', 'Administrador SGD', 'admin@admin.gov.co', 'Jefe', '0001', 'Testing', 'Asesor', '0001', 'Activo');
+INSERT INTO user (usr_id,usr_username,usr_password,usr_name,usr_email,
+usr_profile,dep_id,usr_oficce,ed_id,usr_rol,usr_tel,usr_state)
+  VALUES ('00010000000001', 'admin', '123', 'Administrador SGD', 'admin@admin.gov.co', 'Jefe', '0001', 'Archivo', '0001', 'Asesor', '0000000000', 'Activo');
 
 CREATE TABLE dependence (
     dep_id VARCHAR(15) NOT NULL PRIMARY KEY,
