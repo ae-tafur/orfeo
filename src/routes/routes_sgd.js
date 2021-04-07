@@ -21,28 +21,28 @@ const { renderUsers, addUser, renderEditUser, editUser,
 // admin routes
 router.get('/users', renderUsers);
 router.post('/users', addUser);
-router.get('/edit_:usr_id', renderEditUser);
-router.post('/edit_:usr_id', editUser);
+router.get('/edit_usr_:usr_id', renderEditUser);
+router.post('/edit_usr_:usr_id', editUser);
 router.get('/roles', renderRoles);
 router.post('/roles', addRole);
-router.get('/edit_:rol_id', renderEditRole);
-router.post('/edit_:rol_id', editRole);
+router.get('/edit_rol_:rol_id', renderEditRole);
+router.post('/edit_rol_:rol_id', editRole);
 router.get('/doctypes', renderDoctypes);
 router.post('/doctypes', addDoctype);
-router.get('/edit_:doc_id', renderEditDoctype);
-router.post('/edit_:doc_id', editDoctype);
+router.get('/edit_doctype_:doctype_id', renderEditDoctype);
+router.post('/edit_doctype_:doctype_id', editDoctype);
 router.get('/dependencies', renderDeps);
 router.post('/dependencies', addDeps);
-router.get('/edit_:dep_id', renderEditDep);
-router.post('/edit_:dep_id', editDep);
+router.get('/edit_dep_:dep_id', renderEditDep);
+router.post('/edit_dep_:dep_id', editDep);
 router.get('/contacts', renderContacts);
 router.post('/contacts', addContact);
-router.get('/edit_:ct_id', renderEditContact);
-router.post('/edit_:ct_id', editContact);
+router.get('/edit_ct_:ct_id', renderEditContact);
+router.post('/edit_ct_:ct_id', editContact);
 router.get('/buildings', renderBuildings);
-router.get('/buildings', addBuildings);
-router.get('/edit_:ed_id', renderEditBuilding);
-router.post('/edit_:ed_id', editBuilding);
+router.post('/buildings', addBuildings);
+router.get('/edit_ed_:ed_id', renderEditBuilding);
+router.post('/edit_ed_:ed_id', editBuilding);
 
 // navbar routes
 router.get('/pass', renderChangePass);

@@ -1,0 +1,31 @@
+<!-- Edit Dependence -->
+
+<h1> Editar Dependencia </h1>
+<hr>
+
+<form id="editForm" action="/edit_dep_{{dep.dep_id}}" method="POST">
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label for="inputId"> ID </label>
+            <input type="number" value="{{dep.dep_id}}" class="form-control" id="inputId" name="id" placeholder="Cod Dep + ID" >
+        </div>
+        <div class="form-group col-md-8">
+            <label for="inputName"> Nombre </label>
+            <input type="text" value="{{dep.dep_name}}" class="form-control" id="inputName" name="name">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="inputBuilding"> Ubicación </label>
+            <select class="form-control" id="inputBuilding" name="building">
+                {{#each buildings}}
+                    <option value="{{ed_id}}">{{ed_id}} - {{ed_name}}</option>
+                {{/each}}
+            </select>
+        </div>
+    </div>
+    <div class="btn-group btn-group-toggle" data-toggle="buttons" id="btnAction">
+        <a class="btn btn-secondary" href="/sgd/dependencies" id="btnCancel"> Cancelar </a>
+        <button type="submit" form="editForm" class="btn btn-primary" id="btnSubmit"> Guardar </button>
+    </div>
+</form>

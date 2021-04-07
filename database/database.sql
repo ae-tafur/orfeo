@@ -8,18 +8,19 @@ CREATE TABLE user (
     usr_id VARCHAR(15) NOT NULL PRIMARY KEY,
     usr_username VARCHAR(16) NOT NULL,
     usr_password VARCHAR(50) NOT NULL,
-    usr_fullname VARCHAR(100) NOT NULL,
+    usr_name VARCHAR(100) NOT NULL,
     usr_email VARCHAR(100) NOT NULL,
     usr_profile VARCHAR(50) NOT NULL,
     dep_id VARCHAR(15) NOT NULL,
-    usr_address VARCHAR(100) NOT NULL,
+    usr_oficce VARCHAR(100) NOT NULL,
+    ed_id VARCHAR(15) NOT NULL,
     usr_rol VARCHAR(50) NOT NULL,
-    usr_ext VARCHAR(50) NOT NULL,
+    usr_tel VARCHAR(50) NOT NULL,
     usr_state VARCHAR(8) NOT NULL,
     usr_created_at TIMESTAMP NOT NULL DEFAULT current_timestamp
 );
 
-INSERT INTO user (usr_id,usr_username,usr_password,usr_fullname,usr_email,usr_profile,dep_id,usr_address,usr_rol,usr_ext,usr_state)
+INSERT INTO user (usr_id,usr_username,usr_password,usr_fullname,usr_email,usr_profile,dep_id,usr_oficce,ed_id,usr_rol,usr_ext,usr_state)
   VALUES ('00010000000001', 'admin', '123', 'Administrador SGD', 'admin@admin.gov.co', 'Jefe', '0001', 'Testing', 'Asesor', '0001', 'Activo');
 
 CREATE TABLE dependence (
@@ -38,9 +39,9 @@ CREATE TABLE roles (
 
 CREATE TABLE doctype (
 
-    doc_id VARCHAR(15) NOT NULL PRIMARY KEY,
-    doc_name VARCHAR(100) NOT NULL,
-    doc_days INT(3) NOT NULL
+    doctype_id VARCHAR(15) NOT NULL PRIMARY KEY,
+    doctype_name VARCHAR(100) NOT NULL,
+    doctype_days INT(3) NOT NULL
 );
 
 CREATE TABLE building (
@@ -53,7 +54,7 @@ CREATE TABLE building (
 CREATE TABLE contact (
 
     ct_id VARCHAR(15) NOT NULL PRIMARY KEY,
-    ct_fullname VARCHAR(100) NOT NULL,
+    ct_name VARCHAR(100) NOT NULL,
     ct_email VARCHAR(100) NOT NULL,
     ct_tel VARCHAR(100) NOT NULL,
     ct_address VARCHAR(100) NOT NULL,

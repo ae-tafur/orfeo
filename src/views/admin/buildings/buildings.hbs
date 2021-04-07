@@ -1,10 +1,12 @@
-
 <h1> Edificios </h1>
 <hr>
 <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
     <div class="btn-group" role="group" aria-label="First group">
-        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#addUser"> 
-            <i class="bi bi-person-plus"></i>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal"> 
+            <i class="bi bi-plus"></i>
+        </button>
+        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#addFileModal"> 
+            <i class="bi bi-file-plus"></i>
         </button>
     </div>
     <div class="input-group">
@@ -17,72 +19,50 @@
     </div>
 </div>
 <hr>
-<ul class="list-group">
-<li class="list-group-item list-group-item-action" href="#" aria-current="true"> Usuario
-    <button class="btn btn-primary" id="editUser"> Editar </button>
-</li>
+<table id="users" class="table table-hover">
+    <thead class="bg-secondary text-light">
+        <tr>
+            <th style="width: 10%" scope="col">ID</th>
+            <th style="width: 40%" scope="col">Nombre</th>
+            <th style="width: 40%" scope="col">Dirección</th>
+            <th style="width: 10%" scope="col">Acción</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each buildings}}
+        <tr>
+            <td>{{ed_id}}</td>
+            <td>{{ed_name}}</td>
+            <td>{{ed_address}}</td>
+            <td style="text-align:center">
+                <a class="btn" id="btnEdit" title="edit" href="/sgd/edit_ed_{{ed_id}}"> 
+                    <i class="bi bi-pencil-fill"></i>
+                </a>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
 
-<!-- Modal add User -->
-<div class="modal fade" id="addUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+<!-- Modal add -->
+
+<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"> Crear Usuario </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="user" action="/sgd/user" method="POST">
+            <form id="addForm" action="/sgd/buildings" method="POST">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabel"> Crear Edificio </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">x</button>
+                </div>
+                <div class="modal-body">
                     <div class="form-row">
-                        <div class="form-group col-md-5">
-                            <label for="inputFullname"> Nombre </label>
-                            <input type="text" class="form-control" id="inputFullname" name="fullname">
-                        </div>
-                        <div class="form-group col-md-2">
-                            <label for="inputUser"> Usuario </label>
-                            <input type="text" class="form-control" id="inputUser" name="username">
-                        </div>
-                        <div class="form-group col-md-5">
-                            <label for="inputEmail"> Correo Electronico </label>
-                            <input type="email" class="form-control" id="inputEmail" name="email">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-8">
-                            <label for="inputDependence"> Dependecia </label>
-                            <select class="form-control" id="inputDependence" name="dependence">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                        </div>
                         <div class="form-group col-md-4">
                             <label for="inputId"> ID </label>
                             <input type="number" class="form-control" id="inputId" name="id" placeholder="Cod Dep + ID" >
                         </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-3">
-                            <label for="inputPerfil"> Perfil </label>
-                            <select class="form-control" id="inputPerfil" name="profile">
-                                <option>Jefe</option>
-                                <option>Normal</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="inputRol"> Rol </label>
-                            <select class="form-control" id="inputRol" name="rol">
-                                <option>Auxiliar Administrativo</option>
-                                <option>Profesional Universitario</option>
-                                <option>Profesional Especializado</option>
-                                <option>Asesor</option>
-                                <option>Directivo</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label for="inputExt"> Extensión </label>
-                            <input type="text" class="form-control" id="inputExt" name="ext">
+                        <div class="form-group col-md-8">
+                            <label for="inputName"> Nombre </label>
+                            <input type="text" class="form-control" id="inputName" name="name">
                         </div>
                     </div>
                     <div class="form-row">
@@ -91,12 +71,36 @@
                             <input type="text" class="form-control" id="inputAddress" name="address" placeholder="Dirección + Edificio">
                         </div>
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal"> Cerrar </button>
-                <button type="submit" class="btn btn-primary"> Guardar </button>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" id="submitForm"> Guardar </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal add by File -->
+
+<div class="modal fade" id="addFileModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <form id="addFileForm" action="/sgd/buildings" method="POST">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabel"> Creación Masiva de Edificios </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">x</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="formControlFile"> Seleccionar archivo: </label>
+                        <input type="file" class="form-control-file" id="formControlFile">
+                    </div>
+                </div>
+                <hr>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" id="uploadFile"> Subir </button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

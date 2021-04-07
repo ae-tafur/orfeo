@@ -1,11 +1,11 @@
-<h1> Tipo de Documentos </h1>
+<h1> Tipos de Documentos </h1>
 <hr>
 <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
     <div class="btn-group" role="group" aria-label="First group">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addDoctypeModal"> 
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal"> 
             <i class="bi bi-plus"></i>
         </button>
-        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#addDoctypeFileModal"> 
+        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#addFileModal"> 
             <i class="bi bi-file-plus"></i>
         </button>
     </div>
@@ -19,23 +19,23 @@
     </div>
 </div>
 <hr>
-<table class="table table-hover">
+<table id="users" class="table table-hover">
     <thead class="bg-secondary text-light">
         <tr>
-            <th style="width: 20%" scope="col">ID</th>
-            <th style="width: 50%" scope="col">Tipo de Documento</th>
-            <th style="width: 20%" scope="col">Dias de Respuesta</th>
+            <th style="width: 10%" scope="col">ID</th>
+            <th style="width: 60%" scope="col">Nombre</th>
+            <th style="width: 20%" scope="col">Dias de respuesta</th>
             <th style="width: 10%" scope="col">Acción</th>
         </tr>
     </thead>
     <tbody>
         {{#each doctypes}}
         <tr>
-            <td>{{doc_id}}</td>
-            <td>{{doc_name}}</td>
-            <td>{{doc_days}}</td>
+            <td>{{doctype_id}}</td>
+            <td>{{doctype_name}}</td>
+            <td>{{doctype_days}}</td>
             <td style="text-align:center">
-                <a class="edit" id="btnEditDoctype" title="Editar" data-toggle="modal" data-id="/{{doc_id}}" data-target="#editDoctypeModal"> 
+                <a class="btn" id="btnEdit" title="edit" href="/sgd/edit_doctype_{{doctype_id}}"> 
                     <i class="bi bi-pencil-fill"></i>
                 </a>
             </td>
@@ -44,48 +44,50 @@
     </tbody>
 </table>
 
-<!-- Modal add Dependence -->
+<!-- Modal add -->
 
-<div class="modal fade" id="addDoctypeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <form id="addDoctypeForm" action="/sgd/doctypes" method="POST">
-        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
-            <div class="modal-content">
+<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md">
+        <div class="modal-content">
+            <form id="addForm" action="/sgd/doctypes" method="POST">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"> Crear Tipo de Documento </h5>
+                    <h5 class="modal-title" id="modalLabel"> Crear Tipo de Documento </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">x</button>
                 </div>
                 <div class="modal-body">
                     <div class="form-row">
-                        <div class="form-group col-md-2">
-                            <label for="inputId"> Codigo </label>
-                            <input type="number" class="form-control" id="inputId" name="id" placeholder="Cod Dep + ID" required>
+                        <div class="form-group col-md-4">
+                            <label for="inputId"> ID </label>
+                            <input type="number" class="form-control" id="inputId" name="id">
                         </div>
                         <div class="form-group col-md-8">
-                            <label for="inputName"> Nombre del Tipo de Documento </label>
-                            <input type="text" class="form-control" id="inputName" name="name" required>
+                            <label for="inputDays"> Dias para respuesta </label>
+                            <input type="text" class="form-control" id="inputDays" name="days">
                         </div>
-                        <div class="form-group col-md-2">
-                            <label for="inputDays"> Respuesta en </label>
-                            <input type="number" class="form-control" id="inputDays" name="days" placeholder="Dirección + Edificio" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="inputName"> Nombre </label>
+                            <input type="text" class="form-control" id="inputName" name="name">
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary" id="submitForm"> Guardar </button>
                 </div>
-            </div>
+            </form>
         </div>
-    </form>
+    </div>
 </div>
 
-<!-- Modal add Dependence by File -->
+<!-- Modal add by File -->
 
-<div class="modal fade" id="addDoctypeFileModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <form id="addDoctypeFileForm" action="/sgd/users" method="POST">
-        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
-            <div class="modal-content">
+<div class="modal fade" id="addFileModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <form id="addFileForm" action="/sgd/doctypes" method="POST">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"> Creación Masiva de Tipos de Documentos </h5>
+                    <h5 class="modal-title" id="modalLabel"> Creación Masiva de Tipo de Documentos </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">x</button>
                 </div>
                 <div class="modal-body">
@@ -98,41 +100,7 @@
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary" id="uploadFile"> Subir </button>
                 </div>
-            </div>
+            </form>
         </div>
-    </form>
-</div>
-
-<!-- Modal edit Dependence -->
-
-<div class="modal fade" id="editDoctypeModal" tabindex="-1" aria-labelledby="editDoctypeModalLabel" aria-hidden="true">
-    <form id="editDoctypeForm" action="/{{id}}" method="POST">
-        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editDocypeModalLabel"> Editar Tipo de Documento </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">x</button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-row">
-                        <div class="form-group col-md-2">
-                            <label for="inputId"> Codigo </label>
-                            <input type="number" class="form-control" id="inputId" name="id" placeholder="Cod Dep + ID" required>
-                        </div>
-                        <div class="form-group col-md-8">
-                            <label for="inputName"> Nombre del Tipo de Documento </label>
-                            <input type="text" class="form-control" id="inputName" name="name" required>
-                        </div>
-                        <div class="form-group col-md-2">
-                            <label for="inputDays"> Respuesta en </label>
-                            <input type="number" class="form-control" id="inputDays" name="days" placeholder="Dirección + Edificio" required>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" id="submitForm"> Guardar </button>
-                </div>
-            </div>
-        </div>
-    </form>
+    </div>
 </div>
