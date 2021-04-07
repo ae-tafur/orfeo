@@ -1,0 +1,27 @@
+<!-- Edit Doctype -->
+
+<h1> Editar Roles y Permisos </h1>
+<hr>
+
+<form id="editForm" action="/edit_rol_{{rol.rol_id}}" method="POST">
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label for="inputId"> ID </label>
+            <input type="number" value="{{rol.rol_id}}" class="form-control" id="inputId" name="id">
+        </div>
+        <div class="form-group col-md-8">
+            <label for="inputName"> Nombre </label>
+            <input type="text" value="{{rol.rol_name}}" class="form-control" id="inputName" name="name">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="inputName2"> Nombre </label>
+            <input type="text" class="form-control" id="inputName2" name="name2">
+        </div>
+    </div>
+    <div class="btn-group btn-group-toggle" data-toggle="buttons" id="btnAction">
+        <a class="btn btn-secondary" href="/sgd/roles" id="btnCancel"> Cancelar </a>
+        <button type="submit" form="editForm" class="btn btn-primary" id="btnSubmit"> Guardar </button>
+    </div>
+</form>

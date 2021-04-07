@@ -51,7 +51,7 @@ sgdCtrl.renderRoles = async (req, res) => {
 sgdCtrl.addRole = async (req, res) => {
     try {
         const { id, name } = req.body;
-        var sql = `INSERT INTO roles ( role_id, rol_name )
+        var sql = `INSERT INTO roles ( rol_id, rol_name )
             VALUES (?, ? )`;
         await pool.query(sql, [id, name ]);
         res.redirect('/roles'); 
