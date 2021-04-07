@@ -25,10 +25,10 @@ INSERT INTO user (usr_id,usr_username,usr_password,usr_fullname,usr_email,usr_pr
 CREATE TABLE dependence (
     dep_id VARCHAR(15) NOT NULL PRIMARY KEY,
     dep_name VARCHAR(100) NOT NULL,
-    dep_building VARCHAR(100) NOT NULL
+    ed_id VARCHAR(100) NOT NULL
 );
 
-INSERT INTO dependence VALUES ('0001','Administrador','Sede Principal');
+INSERT INTO dependence VALUES ('0001','Administrador',0001);
 
 CREATE TABLE roles (
 
@@ -57,9 +57,9 @@ CREATE TABLE contact (
     ct_email VARCHAR(100) NOT NULL,
     ct_tel VARCHAR(100) NOT NULL,
     ct_address VARCHAR(100) NOT NULL,
-    ct_country VARCHAR(100) NOT NULL,
-    ct_state VARCHAR(100) NOT NULL,
-    ct_cuty VARCHAR(100) NOT NULL
+    country_id VARCHAR(100) NOT NULL,
+    dpto_id VARCHAR(100) NOT NULL,
+    city_id VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE country (
