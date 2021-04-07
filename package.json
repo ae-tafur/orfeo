@@ -1,0 +1,44 @@
+{
+  "name": "sgd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "scripts": {
+    "dev": "nodemon src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ae-tafur/SGD.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ae-tafur/SGD/issues"
+  },
+  "homepage": "https://github.com/ae-tafur/SGD#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "canvas": "^2.7.0",
+    "chart.js": "^2.9.4",
+    "connect-flash": "^0.1.1",
+    "exceljs": "^4.2.1",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.2.1",
+    "express-session": "^1.17.1",
+    "express-validator": "^6.10.0",
+    "jsbarcode": "^3.11.3",
+    "mariadb": "^2.5.3",
+    "morgan": "^1.10.0",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "timeago.js": "^4.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
