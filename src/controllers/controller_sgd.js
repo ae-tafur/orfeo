@@ -10,36 +10,37 @@ sgdCtrl.renderUsers = async (req, res) => {
 
 sgdCtrl.addUser =  async (req, res) => {
     try {
-        const { name, username, email, dependence, id, profile, rol, ext, address } = req.body;
+        const { id, username, name, email, profile, dependence, office, building, rol, tel} = req.body;
         var sql = `INSERT INTO user ( usr_id, usr_username, usr_password, usr_name, 
-            usr_email, usr_profile, dep_id, usr_address, usr_rol, usr_ext, usr_state )
+            usr_email, usr_profile, dep_id, usr_office, ed_id, usr_rol, usr_tel, usr_state )
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
-        await pool.query(sql, [id, username, '123', 
-                                name, email, profile, 
-                                dependence, address, rol, ext, 'Activo']);
-        res.redirect('/users');
+        await pool.query(sql, [id, username, '123', name, email, profile, 
+                                dependence, office, building, rol, tel, 'Activo']);
+        res.redirect('users');
       } catch(err) {
         console.log(err);
-        res.redirect('/users');
+        res.redirect('users');
       }
 };
 
 sgdCtrl.renderEditUser = async (req, res) => {
     const { usr_id } = req.params;
     const user = await pool.query('SELECT * FROM user WHERE usr_id = ?', [usr_id]);
-    const deps = await pool.query('SELECT * FROM dependence') ;
-    res.render('admin/users/edit', {user: user[0], deps});
+    const deps = await pool.query('SELECT * FROM dependence');
+    const buildings = await pool.query('SELECT * FROM building');
+    res.render('admin/users/edit', {user: user[0], deps, buildings});
 };
 
 sgdCtrl.editUser = async (req,res) => {
     const { usr_id } = req.params;
-    const { name, username, email, dependence, id, profile, rol, tel, address, state} = req.body;
+    const { id, username, name, email, profile, dependence, office, building, rol, tel, state} = req.body;
+    console.log(req.body);
     var sql = `UPDATE user 
         SET usr_id = ?, usr_username = ?, usr_name = ?, usr_email = ?, usr_profile = ?,
-            dep_id = ?, usr_address = ?, usr_rol = ?, usr_ext = ?, usr_state = ?
+            dep_id = ?, usr_office = ?, ed_id = ? usr_rol = ?, usr_tel = ?, usr_state = ?
         WHERE usr_id = ?`;
     await pool.query(sql, [id, username, name, email, profile, 
-                            dependence, address, rol, tel, state, usr_id]);
+                            dependence, office, building, rol, tel, state, usr_id]);
     res.redirect('/sgd/users');
 }
 
@@ -107,27 +108,28 @@ sgdCtrl.editDoctype = async (req,res) => {
     const { id, name, days} = req.body;
     var sql = `UPDATE doctype 
         SET doctype_id = ?, doctype_name = ?, doctype_days = ?
-        WHERE doc_id = ?`;
+        WHERE doctype_id = ?`;
     await pool.query(sql, [id, name, days, doctype_id]);
     res.redirect('/sgd/doctypes');
 }
 
 sgdCtrl.renderDeps = async (req, res) => {
     const deps = await pool.query('SELECT * FROM dependence') ;
-    res.render('admin/dependencies/dependencies', { deps });
+    const buildings = await pool.query('SELECT * FROM building') ;
+    res.render('admin/dependencies/dependencies', { deps, buildings });
 };
 
 sgdCtrl.addDeps = async (req, res) => {
     try {
-        const { id, name, address } = req.body;
+        const { id, name, building } = req.body;
         let sql = `INSERT INTO dependence (
             dep_id, dep_name, ed_id)
             VALUES (?, ?, ?)`;
-        await pool.query(sql, [id, name, address]);
-        res.redirect('/dependencies');  
+        await pool.query(sql, [id, name, building]);
+        res.redirect('dependencies');  
       } catch(err) {
         console.log(err);
-        res.redirect('/dependencies'); 
+        res.redirect('dependencies'); 
       }
 };
 
@@ -144,7 +146,7 @@ sgdCtrl.editDep = async (req,res) => {
     var sql = `UPDATE dependence 
         SET dep_id = ?, dep_name = ?, ed_id = ?
         WHERE dep_id = ?`;
-    await pool.query(sql, [id, name, buildign, dep_id]);
+    await pool.query(sql, [id, name, building, dep_id]);
     res.redirect('/sgd/dependencies');
 }
 
@@ -195,10 +197,10 @@ sgdCtrl.addBuildings = async (req, res) => {
         var sql = `INSERT INTO building ( ed_id, ed_name, ed_address )
             VALUES (?, ?, ?)`;
         await pool.query(sql, [id, name, address]);
-        res.redirect('/buildings');
+        res.redirect('buildings');
       } catch(err) {
         console.log(err);
-        res.redirect('/buildings');
+        res.redirect('buildings');
       } 
 };
 
@@ -247,7 +249,7 @@ sgdCtrl.renderIncomeDoc = async (req, res) => {
 };
 
 sgdCtrl.addIncomeDoc = async (req, res) => {
-    const countrySel = res.query.inputCountry;
+    
     
 
     res.redirect('users'); 

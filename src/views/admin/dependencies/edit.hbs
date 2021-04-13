@@ -3,11 +3,11 @@
 <h1> Editar Dependencia </h1>
 <hr>
 
-<form id="editForm" action="/edit_dep_{{dep.dep_id}}" method="POST">
+<form id="editForm" action="/sgd/dependencies/edit/{{dep.dep_id}}" method="POST">
     <div class="form-row">
         <div class="form-group col-md-4">
             <label for="inputId"> ID </label>
-            <input type="number" value="{{dep.dep_id}}" class="form-control" id="inputId" name="id" placeholder="Cod Dep + ID" >
+            <input type="number" value="{{dep.dep_id}}" class="form-control" id="inputId" name="id" maxlength="3">
         </div>
         <div class="form-group col-md-8">
             <label for="inputName"> Nombre </label>

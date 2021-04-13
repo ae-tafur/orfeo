@@ -13,6 +13,11 @@ body{
     color: #ffffff;
     margin: 0;
 }
+
+.btn {
+    border-radius: 0px;
+  }
+
 /*  Change the color of the nav-items*/
 
 #bar-item{

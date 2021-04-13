@@ -3,11 +3,11 @@
 <h1> Editar Edificio</h1>
 <hr>
 
-<form id="editForm" action="/edit_ed_{{building.ed_id}}" method="POST">
+<form id="editForm" action="/sgd/buildings/edit/{{building.ed_id}}" method="POST">
     <div class="form-row">
         <div class="form-group col-md-4">
             <label for="inputId"> ID </label>
-            <input type="number" value="{{building.ed_id}}" class="form-control" id="inputId" name="id" placeholder="Cod Dep + ID" >
+            <input type="number" value="{{building.ed_id}}" class="form-control" id="inputId" name="id" maxlength="3">
         </div>
         <div class="form-group col-md-8">
             <label for="inputName"> Nombre </label>

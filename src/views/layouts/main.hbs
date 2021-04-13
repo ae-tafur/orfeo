@@ -13,15 +13,15 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
         
-        {{!-- DataPicker --}}
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tail.datetime@0.4.13/css/tail.datetime-default-blue.min.css">
-        
         {{!-- Customizing --}}
         <link rel="short icon" href="/img/sgd_favicon.png">
-        <title> .: SGD Orfeo :. </title>
+        <title> .: SGD - Inarwa :. </title>
 
         <link rel='stylesheet' href='/ent/ent.css'>
         <link rel='stylesheet' href= '/css/style.css'>
+
+        {{!-- TimePicker --}}
+        <link rel="stylesheet" href='/css/datetimepicker.css' />
 
         {{!-- Graphs --}}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
@@ -50,10 +50,80 @@
 
         <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
 
-        {{!-- DatePicker --}}
+        {{!-- DateTimePicker --}}
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
 
-        <script src="https://cdn.jsdelivr.net/npm/tail.datetime@0.4.13/js/tail.datetime-full.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/combine/npm/tail.datetime@0.4.13,npm/tail.datetime@0.4.13/langs/tail.datetime-es.min.js"></script>
+        <script type="text/javascript">
+
+            /* Prevent enter key for income_doc form */
+            $(function(){
+                $('#income_doc').bind('keydown', function(e) {
+                    if (e.keyCode == 13) {
+                        e.preventDefault();
+                    }
+                });
+            });
+
+            /* Datetimepicker config */
+            $(function(){
+                $('#inputDate').datetimepicker({
+                daysOfWeekDisabled: [0, 6],
+                locale: "es",
+                format: "DD-MM-YYYY HH:mm",
+                icons: {
+                    time: "bi bi-clock",
+                    date: "bi bi-calendar3",
+                    up: "bi bi-arrow-up",
+                    down: "bi bi-arrow-down",
+                    previous: 'bi bi-arrow-left',
+                    next: 'bi bi-arrow-right',
+                }
+                });
+            });
+
+            /* Code for barcode */
+
+            $(function(){
+
+                $("#barcode").JsBarcode("JsBarcode", { height:40});
+
+                $('#inputDependence').on('change', function() {
+                    var doc = document.getElementById("inputDocType");
+                    var codDoctype = doc.options[doc.selectedIndex].id;
+
+                    var dep = document.getElementById("inputDependence");
+                    var codDep = dep.options[dep.selectedIndex].value;
+
+                    var dateRad = document.getElementById("inputDate").value;
+                    var dateText = dateRad.replace(/-/g,"");
+                    var dateText = dateText.replace(/ /g,"");
+                    var dateText = dateText.replace(/:/g,"");
+
+                    var barCodeT = "1".concat(codDoctype).concat(codDep).concat(dateText);
+                    
+                   $("#barcode").JsBarcode(barCodeT, { height:40, width:1.9});
+                });
+                
+                $('#inputDocType').on('change', function() {
+                    var doc = document.getElementById("inputDocType");
+                    var codDoctype = doc.options[doc.selectedIndex].id;
+
+                    var dep = document.getElementById("inputDependence");
+                    var codDep = dep.options[dep.selectedIndex].value;
+
+                    var dateRad = document.getElementById("inputDate").value;
+                    var dateText = dateRad.replace(/-/g,"");
+                    var dateText = dateText.replace(/ /g,"");
+                    var dateText = dateText.replace(/:/g,"");
+
+                    var barCodeT = "1".concat(codDoctype).concat(codDep).concat(dateText).concat("0002");
+                    
+                   $("#barcode").JsBarcode(barCodeT, { height:40, width:1.9});
+                });
+            });
+
+        </script>
 
     </body>
 </html>

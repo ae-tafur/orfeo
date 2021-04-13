@@ -1,7 +1,17 @@
 <h1> Radicar Ingreso Fisico </h1>
 <hr>
-<form method="post">
-    <h4>Remitente</h4>
+<form id="income_doc" method="post">
+    <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
+        <h4>Remitente</h4>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <div class="input-group-text" id="btnSearch"> 
+                    <i class="bi bi-search"></i>
+                </div>
+            </div>
+            <input type="text" class="form-control" id="inputSearch" aria-label="inputSearch" aria-describedby="btnSearch" onkeyup="doSearch()" placeholder="Buscar..">
+        </div>
+    </div>
     <hr>
     <div class="form-row">
         <div class="form-group col-md-6">
@@ -54,22 +64,27 @@
     <h4>Documento</h4>
     <hr>
     <div class="form-row">
+        <div class="form-group col-md-4">
+            <svg id="barcode" height="40"></svg>
+        </div>
         <div class="form-group col-md-3">
-            <label for="inputDocType">Fecha de Radicado</label>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputDate2">
-                        <i class="bi bi-calendar3"></i>
-                    </span>
+            <label for="inputDate">Fecha y Hora de Radicado</label>
+            <div class="input-group">
+                <div class="input-group-prepend" data-target="#inputDate" data-toggle="datetimepicker">
+                    <div class="input-group-text">
+                        <i class="bi bi-calendar3"></i> 
+                        <i class="bi bi-slash"></i>
+                        <i class="bi bi-clock"></i> 
+                    </div>
                 </div>
-                <input id="inputDate" type="text" class="tail-datetime-field form-control" aria-describedby="inputDate">
+                <input id="inputDate" type="text" class="form-control" aria-describedby="inputDate" placeholder="dd-mm-yyyy HH:mm">
             </div>
         </div>
-        <div class="form-group col-md-9">
+        <div class="form-group col-md-5">
             <label for="inputDocType">Tipo de Documento</label>
             <select id="inputDocType" class="form-control">
                 {{#each doctypes}}
-                    <option id={{doc_id}}>{{doc_id}} - {{doc_name}}</option>
+                    <option id={{doctype_id}}>{{doctype_id}} - {{doctype_name}}</option>
                 {{/each}}
             </select>
         </div>
@@ -79,7 +94,7 @@
             <label for="inputDependence">Dependencia Destino</label>
             <select id="inputDependence" class="form-control">
                 {{#each deps}}
-                    <option id={{dep_id}}>{{dep_id}} - {{dep_name}}</option>
+                    <option value={{dep_id}}>{{dep_id}} - {{dep_name}}</option>
                 {{/each}}
             </select>
         </div>
@@ -87,7 +102,7 @@
             <label for="inputDependence">Asignar a:</label>
             <select id="inputDependence" class="form-control">
                 {{#each users}}
-                    <option id={{usr_id}}>{{usr_id}} - {{usr_fullname}}</option>
+                    <option value={{usr_id}}>{{usr_id}} - {{usr_name}}</option>
                 {{/each}}
             </select>
         </div>
@@ -101,7 +116,7 @@
     <div class="form-row">
         <div class="form-group col-md-6">
             <div class="form-row">
-                <button id="genBarcode" type="button" class="btn btn-secondary btn-block" onclick="funGenBarcode()">Generar codigo</button>
+                <button id="genBarcode" type="button" class="btn btn-secondary btn-block">Generar codigo</button>
             </div>
             <div class="form-row">
                 <div class="custom-file">
@@ -117,31 +132,3 @@
     </div>
     <button type="submit" class="btn btn-primary btn-block">Radicar documento</button>
 </form>
-
-{{!-- Generate barcode and datePicker--}}
-<script type="text/javascript"> 
-    
-    document.addEventListener("DOMContentLoaded", function(){
-                tail.DateTime(".tail-datetime-field", { position: "right", dateFormat: "YYYY-mm-dd", 
-                locale: "es", timeStepMinutes: 1, time12h: false});
-            });
-
-    function funGenBarcode() {
-        var doc = document.getElementById("inputDocType");
-        var codDoctype = doc.options[doc.selectedIndex].id;
-
-        var dep = document.getElementById("inputDependence");
-        var codDep = dep.options[dep.selectedIndex].id;
-
-        var dateRad = document.getElementById("inputDate").value;
-        var dateText = dateRad.replace(/-/g,"");
-        var dateText = dateText.replace(/:/g,"");
-        var dateText = dateText.replace(/ /g,"");
-        var dateText = dateText.slice(0, -2);
-
-        var barCodeT = "1".concat(codDoctype).concat(codDep).concat(dateText);
-
-        JsBarcode("#barcode", barCodeT, { height:40, lastChar: "1"});
-    };
-
-</script>

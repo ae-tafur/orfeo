@@ -61,31 +61,31 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-row">
-                        <div class="form-group col-md-5">
+                        <div class="form-group col-md-3">
+                            <label for="inputId"> Identificación </label>
+                            <input type="number" class="form-control" id="inputId" name="id" placeholder="C.C." required>
+                        </div>
+                        <div class="form-group col-md-6">
                             <label for="inputName"> Nombre </label>
                             <input type="text" class="form-control" id="inputName" name="name" required>
                         </div>
-                        <div class="form-group col-md-2">
+                        <div class="form-group col-md-3">
                             <label for="inputUser"> Usuario </label>
                             <input type="text" class="form-control" id="inputUser" name="username" required>
                         </div>
+                    </div>
+                    <div class="form-row">
                         <div class="form-group col-md-5">
                             <label for="inputEmail"> Correo Electronico </label>
                             <input type="email" class="form-control" id="inputEmail" name="email" required>
                         </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-8">
+                        <div class="form-group col-md-7">
                             <label for="inputDependence"> Dependecia </label>
                             <select class="form-control" id="inputDependence" name="dependence">
                                 {{#each deps}}
                                     <option value="{{dep_id}}">{{dep_id}} - {{dep_name}}</option>
                                 {{/each}}
                             </select>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="inputId"> ID </label>
-                            <input type="number" class="form-control" id="inputId" name="id" placeholder="Cod Dep + ID" required>
                         </div>
                     </div>
                     <div class="form-row">
@@ -99,6 +99,7 @@
                         <div class="form-group col-md-6">
                             <label for="inputRol"> Rol </label>
                             <select class="form-control" id="inputRol" name="rol">
+                                <option>Contratista</option>
                                 <option>Auxiliar Administrativo</option>
                                 <option>Profesional Universitario</option>
                                 <option>Profesional Especializado</option>
@@ -107,14 +108,22 @@
                             </select>
                         </div>
                         <div class="form-group col-md-3">
-                            <label for="inputExt"> Extensión </label>
-                            <input type="text" class="form-control" id="inputExt" name="ext" required>
+                            <label for="inputTel"> Telefono </label>
+                            <input type="text" class="form-control" id="inputTel" name="tel">
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-12">
-                            <label for="inputAddress"> Ubicación </label>
-                            <input type="text" class="form-control" id="inputAddress" name="address" placeholder="Dirección + Edificio" required>
+                        <div class="form-group col-md-4">
+                            <label for="inputOffice"> Oficina </label>
+                            <input type="text" class="form-control" id="inputOffice" name="office" placeholder="Dirección + Edificio">
+                        </div>
+                        <div class="form-group col-md-8">
+                            <label for="inputBuilding"> Edificio </label>
+                            <select class="form-control" id="inputBuilding" name="building">
+                                {{#each buildings}}
+                                    <option value="{{ed_id}}">{{ed_id}} - {{ed_name}}</option>
+                                {{/each}}
+                            </select>
                         </div>
                     </div>
                 </div>
