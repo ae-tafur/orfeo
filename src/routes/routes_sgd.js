@@ -9,7 +9,7 @@ const { renderUsers, addUser, renderEditUser, editUser,
     renderDeps, addDeps, renderEditDep, editDep,
     renderContacts, addContact, renderEditContact, editContact,
     renderBuildings, addBuildings, renderEditBuilding, editBuilding,
-    renderChangePass, changePass, renderHelp, renderChart, renderIncomeDoc, addIncomeDoc} = require('../controllers/controller_sgd')
+    renderChangePass, changePass, renderHelp, renderChart, renderNewDoc, addNewDoc} = require('../controllers/controller_sgd')
 
 // Authorization
 /* router.use(isLoggedIn); */
@@ -51,7 +51,7 @@ router.get('/help', renderHelp);
 router.get('/charts',renderChart);
 
 // sidebar routes
-router.get('/income_paper', renderIncomeDoc);
-router.post('/income_paper', addIncomeDoc);
+router.get('/new_doc', renderNewDoc);
+router.post('/new_doc', addNewDoc);
 
 module.exports = router;

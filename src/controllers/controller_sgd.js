@@ -237,18 +237,29 @@ sgdCtrl.renderChart = (req, res) => {
     res.render('chart/chart');
 };
 
-sgdCtrl.renderIncomeDoc = async (req, res) => {
+sgdCtrl.renderNewDoc = async (req, res) => {
     const doctypes = await pool.query('SELECT * FROM doctype');
     const deps = await pool.query('SELECT * FROM dependence');
     const users = await pool.query('SELECT * FROM user');
     const country = await pool.query('SELECT * FROM country');
+
+ /*    SELECT *
+FROM city
+LEFT JOIN ON dpto user.dpto_id = state.id
+LEFT JOIN ON city lawyer.city_id = city.id
+LEFT JOIN district lawyer.district_id ON = district.id
+WHERE STATE_NAME = "Alabama"
+                AND city.name = "Birmingham"
+                AND district.name = "Northern";
+ */
+
     const countrySel = req.query.inputCountry;
     const dpto = await pool.query('SELECT * FROM dpto');
     const city = await pool.query('SELECT * FROM city');
-    res.render('files/income_doc',{ doctypes, deps, users, country, dpto, city});
+    res.render('files/new_doc',{ doctypes, deps, users, country, dpto, city});
 };
 
-sgdCtrl.addIncomeDoc = async (req, res) => {
+sgdCtrl.addNewDoc = async (req, res) => {
     
     
 
